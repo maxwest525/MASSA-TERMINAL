@@ -25,23 +25,6 @@
   *::-webkit-scrollbar-thumb:hover {
     background: #3a3a4a;
   }
-
-  /* Terminal mode scrollbar */
-  .terminal-main {
-    scrollbar-color: #16a34a33 #050505;
-  }
-
-  .terminal-main::-webkit-scrollbar-track {
-    background: #050505;
-  }
-
-  .terminal-main::-webkit-scrollbar-thumb {
-    background: #16a34a33;
-  }
-
-  .terminal-main::-webkit-scrollbar-thumb:hover {
-    background: #16a34a55;
-  }
 }
 
 @layer components {
@@ -79,32 +62,5 @@
 
   .status-dot-idle {
     @apply bg-massa-muted;
-  }
-
-  /* Chassis mode — faint structural grid */
-  .chassis-grid {
-    background-image:
-      linear-gradient(rgba(99, 102, 241, 0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(99, 102, 241, 0.015) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  /* Terminal scanline overlay */
-  .terminal-scanlines {
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 50;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.03) 2px,
-      rgba(0, 0, 0, 0.03) 4px
-    );
-    mix-blend-mode: multiply;
   }
 }
