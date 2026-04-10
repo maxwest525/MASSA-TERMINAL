@@ -12,7 +12,7 @@ const typeIcons: Record<string, React.ElementType> = {
 
 const typeColors: Record<string, string> = {
   feature: 'border-blue-500/30 text-blue-400 hover:bg-blue-500/10',
-  enhancement: 'border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/10',
+  enhancement: 'border-teal-500/30 text-teal-400 hover:bg-teal-500/10',
   optimization: 'border-green-500/30 text-green-400 hover:bg-green-500/10',
   clarification: 'border-yellow-500/30 text-yellow-400 hover:bg-yellow-500/10',
 }

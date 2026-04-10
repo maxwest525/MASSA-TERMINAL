@@ -72,7 +72,7 @@ export function ProjectDashboardPage() {
             </Link>
             <Link
               to={`/projects/${project.id}/preview`}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-massa-accent/15 text-indigo-300 rounded-lg hover:bg-massa-accent/25 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-massa-accent/15 text-teal-300 rounded-lg hover:bg-massa-accent/25 transition-colors"
             >
               <Eye size={12} /> Preview
             </Link>

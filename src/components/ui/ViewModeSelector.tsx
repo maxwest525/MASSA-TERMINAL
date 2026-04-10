@@ -24,7 +24,7 @@ export function ViewModeSelector() {
           className={clsx(
             'p-1.5 rounded-md transition-all duration-200',
             viewMode === mode
-              ? 'bg-massa-accent text-white shadow-md'
+              ? 'bg-massa-accent text-massa-bg shadow-md'
               : 'text-massa-muted hover:text-massa-text hover:bg-massa-border/30'
           )}
         >

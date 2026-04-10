@@ -20,7 +20,7 @@ export function DepthToggle() {
           className={clsx(
             'px-2.5 py-1 text-xs font-medium rounded-md transition-all duration-200',
             depthLevel === level
-              ? 'bg-massa-accent/20 text-indigo-300'
+              ? 'bg-massa-accent/20 text-teal-300'
               : 'text-massa-muted hover:text-massa-text'
           )}
         >

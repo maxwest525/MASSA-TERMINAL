@@ -31,7 +31,7 @@ const folderConfig: { folder: Folder; icon: React.ElementType; label: string }[]
 ]
 
 const navLink = 'flex items-center gap-3 px-3 py-2 text-sm rounded-lg transition-all duration-200'
-const navLinkActive = 'bg-massa-accent/15 text-indigo-300'
+const navLinkActive = 'bg-massa-accent/15 text-teal-300'
 const navLinkInactive = 'text-massa-muted hover:text-massa-text hover:bg-massa-surface2'
 
 export function Sidebar() {
@@ -48,8 +48,8 @@ export function Sidebar() {
       {/* Logo */}
       <div className="px-4 py-4 border-b border-massa-border">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-massa-accent to-massa-accent2 flex items-center justify-center">
-            <Zap size={14} className="text-white" />
+          <div className="w-7 h-7 rounded-lg bg-massa-accent/90 flex items-center justify-center">
+            <Zap size={14} className="text-massa-bg" />
           </div>
           <span className="font-semibold text-sm tracking-wide">MASSA</span>
           <span className="text-xs text-massa-muted font-mono">v0.1</span>

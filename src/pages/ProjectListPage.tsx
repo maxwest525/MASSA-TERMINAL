@@ -34,7 +34,7 @@ export function ProjectListPage() {
               activeFolder === folder
                 ? isTerminal
                   ? 'bg-green-500/15 text-green-400'
-                  : 'bg-massa-accent/15 text-indigo-300'
+                  : 'bg-massa-accent/15 text-teal-300'
                 : isTerminal
                   ? 'text-green-700 hover:text-green-400'
                   : 'text-massa-muted hover:text-massa-text hover:bg-massa-surface2'

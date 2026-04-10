@@ -69,9 +69,9 @@ export function CommandInput() {
           </span>
           {isProcessing && (
             <div className="ml-auto flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-massa-accent animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-1.5 h-1.5 rounded-full bg-massa-accent animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-1.5 h-1.5 rounded-full bg-massa-accent animate-bounce" style={{ animationDelay: '300ms' }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-massa-accent animate-dot-pulse" style={{ animationDelay: '0ms' }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-massa-accent animate-dot-pulse" style={{ animationDelay: '200ms' }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-massa-accent animate-dot-pulse" style={{ animationDelay: '400ms' }} />
             </div>
           )}
         </div>
@@ -143,7 +143,7 @@ export function CommandInput() {
               inputValue.trim() && !isProcessing
                 ? isTerminal
                   ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
-                  : 'bg-massa-accent text-white hover:bg-indigo-500'
+                  : 'bg-massa-accent text-massa-bg hover:bg-teal-400'
                 : 'text-massa-ghost cursor-not-allowed'
             )}
           >
