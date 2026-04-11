@@ -6,7 +6,7 @@ const typeConfig: Record<Recommendation['type'], { icon: React.ElementType; colo
   suggestion: { icon: Lightbulb, color: 'text-blue-400' },
   warning: { icon: AlertTriangle, color: 'text-yellow-400' },
   optimization: { icon: TrendingUp, color: 'text-green-400' },
-  insight: { icon: Eye, color: 'text-indigo-400' },
+  insight: { icon: Eye, color: 'text-teal-400' },
 }
 
 interface Props {

@@ -55,7 +55,7 @@ export function MissionControlPage() {
               {/* Project header */}
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h3 className="font-semibold group-hover:text-indigo-300 transition-colors">
+                  <h3 className="font-semibold group-hover:text-teal-300 transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-xs text-massa-muted mt-1">{project.description}</p>
@@ -84,7 +84,7 @@ export function MissionControlPage() {
                     />
                     <span className={clsx(
                       'text-[10px]',
-                      stage.status === 'active' ? 'text-indigo-300' : 'text-massa-ghost'
+                      stage.status === 'active' ? 'text-teal-300' : 'text-massa-ghost'
                     )}>
                       {stage.name}
                     </span>
@@ -101,7 +101,7 @@ export function MissionControlPage() {
                       <span className="text-sm">{agent.avatar}</span>
                       <span className={clsx(
                         'text-xs',
-                        agent.status === 'working' ? 'text-indigo-300' : 'text-massa-ghost'
+                        agent.status === 'working' ? 'text-teal-300' : 'text-massa-ghost'
                       )}>
                         {agent.name}
                       </span>
@@ -118,7 +118,7 @@ export function MissionControlPage() {
                   ))}
                 </div>
                 {workingAgents.length > 0 && (
-                  <span className="text-xs text-indigo-300">
+                  <span className="text-xs text-teal-300">
                     {workingAgents.length} active
                   </span>
                 )}

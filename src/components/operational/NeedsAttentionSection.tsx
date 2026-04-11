@@ -78,7 +78,7 @@ export function NeedsAttentionSection({ limit, projectId }: Props) {
             </div>
             <button
               onClick={() => resolveItem(item.id)}
-              className="shrink-0 px-3 py-1.5 text-xs font-medium bg-massa-accent/15 text-indigo-300 rounded-lg hover:bg-massa-accent/25 transition-colors opacity-0 group-hover:opacity-100"
+              className="shrink-0 px-3 py-1.5 text-xs font-medium bg-massa-accent/15 text-teal-300 rounded-lg hover:bg-massa-accent/25 transition-colors opacity-0 group-hover:opacity-100"
             >
               Resolve
             </button>
@@ -93,7 +93,7 @@ export function NeedsAttentionSection({ limit, projectId }: Props) {
       {limit && attentionItems.filter((i) => !i.resolved).length > limit && (
         <Link
           to="/needs-attention"
-          className="flex items-center justify-center gap-1 text-xs text-massa-muted hover:text-indigo-300 transition-colors py-2"
+          className="flex items-center justify-center gap-1 text-xs text-massa-muted hover:text-teal-300 transition-colors py-2"
         >
           View all <ArrowRight size={12} />
         </Link>

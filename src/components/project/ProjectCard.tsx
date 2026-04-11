@@ -39,7 +39,7 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <div className="flex items-start justify-between mb-3">
         <div>
-          <h3 className="font-semibold text-sm group-hover:text-indigo-300 transition-colors">
+          <h3 className="font-semibold text-sm group-hover:text-teal-300 transition-colors">
             {project.title}
           </h3>
           {depthLevel !== 'simple' && (
@@ -56,7 +56,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <span className="flex items-center gap-1">
             <Bot size={12} />
             {workingAgents.length > 0 ? (
-              <span className="text-indigo-300">{workingAgents.length} active</span>
+              <span className="text-teal-300">{workingAgents.length} active</span>
             ) : (
               <span>{agents.length} agents</span>
             )}
@@ -88,7 +88,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 />
                 <span className={clsx(
                   'text-[10px]',
-                  stage.status === 'active' ? 'text-indigo-300' : 'text-massa-ghost'
+                  stage.status === 'active' ? 'text-teal-300' : 'text-massa-ghost'
                 )}>
                   {stage.name}
                 </span>

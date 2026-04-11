@@ -22,7 +22,7 @@ export function HomePage() {
           <div className="mb-6">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-massa-accent/10 border border-massa-accent/20 mb-4">
               <Zap size={12} className="text-massa-accent" />
-              <span className="text-xs text-indigo-300 font-medium">AI Operating System</span>
+              <span className="text-xs text-teal-300 font-medium">AI Operating System</span>
             </div>
             <h1 className="text-2xl font-bold mb-2">What do you want to build?</h1>
             <p className="text-sm text-massa-muted">
@@ -52,7 +52,7 @@ export function HomePage() {
           </h2>
           <Link
             to="/needs-attention"
-            className="text-xs text-massa-muted hover:text-indigo-300 flex items-center gap-1 transition-colors"
+            className="text-xs text-massa-muted hover:text-teal-300 flex items-center gap-1 transition-colors"
           >
             View all <ArrowRight size={12} />
           </Link>
@@ -71,7 +71,7 @@ export function HomePage() {
           </h2>
           <Link
             to="/projects"
-            className="text-xs text-massa-muted hover:text-indigo-300 flex items-center gap-1 transition-colors"
+            className="text-xs text-massa-muted hover:text-teal-300 flex items-center gap-1 transition-colors"
           >
             All projects <ArrowRight size={12} />
           </Link>

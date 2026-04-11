@@ -2,7 +2,7 @@ import { clsx } from 'clsx'
 
 const variants = {
   default: 'bg-massa-surface2 text-massa-muted border-massa-border',
-  accent: 'bg-massa-accent/20 text-indigo-300 border-indigo-500/30',
+  accent: 'bg-massa-accent/20 text-teal-300 border-teal-500/30',
   success: 'bg-green-500/15 text-green-400 border-green-500/30',
   warning: 'bg-yellow-500/15 text-yellow-400 border-yellow-500/30',
   error: 'bg-red-500/15 text-red-400 border-red-500/30',

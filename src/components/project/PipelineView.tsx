@@ -36,7 +36,7 @@ export function PipelineView({ stages }: { stages: PipelineStage[] }) {
                 <span
                   className={clsx(
                     'text-[11px] font-medium',
-                    stage.status === 'active' ? 'text-indigo-300' : 'text-massa-muted'
+                    stage.status === 'active' ? 'text-teal-300' : 'text-massa-muted'
                   )}
                 >
                   {stage.name}
