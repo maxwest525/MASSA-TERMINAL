@@ -1,5 +1,83 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+MASSA Terminal is a **demo / mock** for an AI build-orchestration UI ("AI Operating System"). It is a Vite + React 18 + TypeScript + Tailwind SPA with **no backend** — all data is seeded in `src/data/*.ts` and mutated in-memory through Zustand stores. A `simulation.ts` module drives fake real-time activity (agent progress, log output, new attention items) via `setInterval` timers.
+
+Treat this as a UX prototype: there are no API calls, no auth, no persistence. Anything that looks like a "build" or "agent" is animated state.
+
+## Commands
+
+```bash
+npm install          # install deps
+npm run dev          # vite dev server (http://localhost:5173)
+npm run build        # tsc -b && vite build (typecheck is part of build)
+npm run preview      # serve the dist/ build
+```
+
+There are no tests, no linter, and no formatter configured. `npm run build` is the only correctness gate — it runs `tsc -b` first, so a successful build means types check.
+
+## Architecture
+
+### Routing and shell
+
+`src/main.tsx` → `src/App.tsx` mounts `RouterProvider` and calls `startSimulation()` once. The router (`src/router.tsx`) wraps every page in `AppShell` (sidebar + topbar + `<Outlet/>`). Routes are nested under `/projects/:projectId/{builds,agents,preview}` plus top-level `/`, `/projects`, `/mission-control`, `/approvals`, `/needs-attention`.
+
+### State: Zustand stores in `src/stores/`
+
+State is split by domain — pages compose multiple stores rather than reading one global store:
+
+- `useAppStore` — UI chrome: `viewMode` (`chassis` | `terminal` | `mission-control` | `blueprint` | `orchestrator`), `depthLevel` (`simple` | `standard` | `deep`), `sidebarOpen`.
+- `useProjectStore` — seeded from `seedProjects()`; projects keyed by id in a record, partitioned by `Folder` (`in-progress` | `completed` | `archived` | `deleted` | `deployed` | `published`).
+- `useAgentStore` — seeded from `seedAgents()`; agents are linked to projects via `projectId`. The simulation mutates `progress`, `status`, `currentTask`, and appends `outputs`.
+- `useCommandStore` — command bar state: `inputValue`, `ghostText`, `suggestions`, `history`, `isProcessing`.
+- `useNotificationStore` — "Needs Attention" items; exposes `getUnresolvedCount()` used by the sidebar/topbar badges.
+
+Stores follow a consistent pattern: a `seed*()` factory from `src/data/` initialises state, and updates use immutable spread (no Immer despite the dep being installed).
+
+### Types
+
+Domain types live in `src/types/{app,project,agent,command}.ts` and are re-exported from `src/types/index.ts`. Always import from `@/types` (the `@/*` alias maps to `src/*`, configured in both `tsconfig.json` and `vite.config.ts`).
+
+### View modes
+
+`viewMode` from `useAppStore` is read across the app to switch styling. The key one is `terminal`: it removes the sidebar (`Sidebar.tsx` returns `null` when `viewMode === 'terminal'`), swaps the background to black, and changes typography to mono-green throughout. Components branch on `isTerminal = viewMode === 'terminal'` using `clsx`. When adding new pages/components, mirror this pattern.
+
+`depthLevel` is read by pages (e.g. `ProjectDashboardPage`) to hide secondary panels in `simple` mode.
+
+### Simulation loop (`src/data/simulation.ts`)
+
+`startSimulation()` registers three `setInterval`s (3s agent progress tick, 8s output append, 25s new attention item). It mutates stores directly via `useAgentStore.getState()` / `useNotificationStore.getState()`. Started once in `App.tsx`'s mount effect, cleaned up on unmount. If you add new simulated behaviour, register the interval id into the module-level `intervals[]` so `stopSimulation()` clears it.
+
+### Command bar (ghost text)
+
+`src/hooks/useGhostText.ts` watches `inputValue` from `useCommandStore`, debounces 300ms, then looks up `ghostTextMap` and `suggestionBank` in `src/data/recommendations.ts` to fill `ghostText` and `suggestions`. `Tab` accepts the ghost; `Enter` submits and navigates hard-coded to `/projects/proj-crm` after a 2s fake delay (`CommandInput.tsx`). The mock submission flow is intentional — there is no real build target.
+
+### Styling
+
+Tailwind with a custom `massa` colour palette in `tailwind.config.ts` (`massa-bg`, `massa-surface`, `massa-border`, `massa-accent` (teal), etc.). Reusable utilities are defined in `@layer components` in `src/index.css`: `.glass-panel`, `.glow-accent`, `.terminal-text`, `.status-dot{-active,-building,-reviewing,-failed,-idle}`. Prefer these over hand-rolled equivalents.
+
+Fonts (`Space Grotesk`, `JetBrains Mono`) are loaded from Google Fonts in `index.html`.
+
+### Component layout
+
+- `components/layout/` — `AppShell`, `Sidebar`, `TopBar`, `Breadcrumbs` (the chrome).
+- `components/ui/` — primitives: `Badge`, `ProgressBar`, `ViewModeSelector`, `DepthToggle`.
+- `components/{project,agent,command,operational}/` — domain components consumed by pages.
+
+Pages in `src/pages/` are thin: they read stores and compose components.
+
+## Conventions
+
+- Use the `@/` import alias (e.g. `@/stores/useAppStore`, `@/types`). Don't use relative paths across top-level folders.
+- Type-only imports use `import type { … }` (see existing files).
+- Function components only, named exports (`export function Foo()`), no default exports except `App.tsx`.
+- Conditional classes go through `clsx` — already a dep.
+- Icons come from `lucide-react`; size with the `size` prop (typically `12`–`16`).
+- New domain entities: add the type in `src/types/<domain>.ts`, re-export from `index.ts`, add a `seed*()` to `src/data/`, and a Zustand store in `src/stores/`.
+
 ## Skills
 
 ### using-superpowers
