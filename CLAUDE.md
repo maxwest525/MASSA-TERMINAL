@@ -19,6 +19,8 @@ npm run preview      # serve the dist/ build
 
 There are no tests, no linter, and no formatter configured. `npm run build` is the only correctness gate — it runs `tsc -b` first, so a successful build means types check.
 
+In Claude Code remote/web sessions, `.claude/hooks/session-start.sh` runs `npm install` automatically on session start (gated on `CLAUDE_CODE_REMOTE=true`, so it's a no-op locally). Hook wiring lives in `.claude/settings.json`.
+
 ## Architecture
 
 ### Routing and shell
