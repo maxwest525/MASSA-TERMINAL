@@ -53,6 +53,8 @@ Domain types live in `src/types/{app,project,agent,command}.ts` and are re-expor
 
 `startSimulation()` registers three `setInterval`s (3s agent progress tick, 8s output append, 25s new attention item). It mutates stores directly via `useAgentStore.getState()` / `useNotificationStore.getState()`. Started once in `App.tsx`'s mount effect, cleaned up on unmount. If you add new simulated behaviour, register the interval id into the module-level `intervals[]` so `stopSimulation()` clears it.
 
+The ticks only act on agents whose `status === 'working'` (the `AgentStatus` enum is `idle | working | blocked | complete`), and progress is capped at 95 — agents never auto-complete via the simulation, so a `complete` state only happens if you set it explicitly.
+
 ### Command bar (ghost text)
 
 `src/hooks/useGhostText.ts` watches `inputValue` from `useCommandStore`, debounces 300ms, then looks up `ghostTextMap` and `suggestionBank` in `src/data/recommendations.ts` to fill `ghostText` and `suggestions`. `Tab` accepts the ghost; `Enter` submits and navigates hard-coded to `/projects/proj-crm` after a 2s fake delay (`CommandInput.tsx`). The mock submission flow is intentional — there is no real build target.
